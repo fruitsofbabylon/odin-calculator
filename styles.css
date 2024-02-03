@@ -1,0 +1,26 @@
+.container {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    border: 1px solid black;
+}
+
+.container button {
+    border: 1px solid black;
+    background-color: white;
+    box-sizing: border-box;
+    flex-basis: 25%;
+    font-size: 24px;
+}
+
+.display {
+    flex-basis: 100%;
+    border: 1px solid black;
+}
+
+#zero {
+    flex-basis: 50%;
+}
