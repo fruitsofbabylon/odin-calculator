@@ -1,6 +1,11 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .container {
-    width: 450px;
-    height: 450px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -19,6 +24,7 @@
 .display {
     flex-basis: 100%;
     border: 1px solid black;
+    height: 35px;
 }
 
 #zero {
