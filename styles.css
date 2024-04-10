@@ -11,19 +11,28 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
+    max-width: 450px;
 }
 
-.container button {
-    border: none;
+.button-container {
     box-sizing: border-box;
     flex-basis: 25%;
+    text-align: center;
+}
+
+.button-container button {
     font-size: 24px;
+    border: none;
+    margin: 10px auto; 
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
 }
 
 .display {
     flex-basis: 100%;
     border: none;
-    height: 35px;
+    height: 80px;
 }
 
 .operator,
@@ -45,6 +54,11 @@ body {
     color: #1D084B;
 }
 
-#zero {
+#zero-btn {
     flex-basis: 50%;
+}
+
+#zero-btn button {
+    width: 180px;
+    border-radius: 35px;
 }
