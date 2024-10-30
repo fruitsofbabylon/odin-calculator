@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Digital-7';
+    src: url('Digital-7.woff2');
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -32,7 +37,16 @@ body {
 .display {
     flex-basis: 100%;
     border: none;
-    height: 80px;
+    height: 60px;
+    margin: 15px 5%;
+    vertical-align: middle;
+
+    font-family: 'Digital-7';
+    font-weight: normal;
+    font-style: normal;
+    color: #F6D9E2;
+    font-size: 60px;
+    text-align-last: right;
 }
 
 .operator,
