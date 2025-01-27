@@ -1,3 +1,4 @@
+// add 2 numbers and an operand variables
 let firstOperand = '';
 let secondOperand = '';
 let operation = '';
@@ -38,5 +39,21 @@ function operate (operator, a, b) {
             return div(a, b);
     }
 }
+
+//display the content of digit buttons clicked and store their values
+const display = document.querySelector('.display');
+const digitButtons = document.querySelectorAll('.operand');
+let currentNumber = '';
+
+function updateDisplay(digit) {
+    currentNumber += digit;
+    display.textContent += digit;
+}
+
+digitButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        updateDisplay(button.textContent)
+    })
+})
 
 
