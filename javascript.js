@@ -56,4 +56,24 @@ digitButtons.forEach(button => {
     })
 })
 
+//store the first operand and operator clicked
+const operatorButtons = document.querySelectorAll('.operator');
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        firstOperand = currentNumber;
+        currentNumber = '';
+        operation = button.textContent;
+        display.textContent = '';
+    })
+})
+
+//store the second operand and execute the calculation
+const resultButton = document.querySelector('.equals');
+
+resultButton.addEventListener('click', () => {
+    secondOperand = currentNumber;
+    currentNumber = '';
+    display.textContent = operate(operation, firstOperand, secondOperand);
+})
 
