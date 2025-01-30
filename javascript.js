@@ -91,6 +91,9 @@ operatorButtons.forEach((button) => {
 const resultButton = document.querySelector(".equals");
 
 resultButton.addEventListener("click", () => {
+    if (firstOperand === "") {
+        return;
+    }
     secondOperand = currentNumber;
     currentNumber = "";
     display.textContent = parseFloat(
@@ -100,4 +103,15 @@ resultButton.addEventListener("click", () => {
             parseFloat(secondOperand)
         ).toPrecision(14)
     );
+});
+
+//clear the display and reset the variables
+const clearButton = document.querySelector(".clear");
+
+clearButton.addEventListener("click", () => {
+    currentNumber = "";
+    firstOperand = "";
+    secondOperand = "";
+    operation = "";
+    display.textContent = "";
 });
