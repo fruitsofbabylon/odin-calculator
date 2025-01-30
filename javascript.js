@@ -33,9 +33,6 @@ function operate(operator, a, b) {
             return mul(a, b);
 
         case "/":
-            if (b == 0) {
-                return "not today";
-            }
             return div(a, b);
     }
 }
@@ -93,6 +90,9 @@ const resultButton = document.querySelector(".equals");
 resultButton.addEventListener("click", () => {
     if (firstOperand === "") {
         return;
+    } else if (operation = "/" && currentNumber === "0") {
+        display.textContent = "Nah mate";
+        return
     }
     secondOperand = currentNumber;
     currentNumber = "";
