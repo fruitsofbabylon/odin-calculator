@@ -74,6 +74,6 @@ const resultButton = document.querySelector('.equals');
 resultButton.addEventListener('click', () => {
     secondOperand = currentNumber;
     currentNumber = '';
-    display.textContent = operate(operation, firstOperand, secondOperand);
+    display.textContent = operate(operation, parseFloat(firstOperand), parseFloat(secondOperand));
 })
 
