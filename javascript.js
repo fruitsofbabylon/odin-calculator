@@ -42,7 +42,7 @@ function operate (operator, a, b) {
 
 //display the content of digit buttons clicked and store their values
 const display = document.querySelector('.display');
-const digitButtons = document.querySelectorAll('.operand');
+const digitButtons = document.querySelectorAll('.operand, .decimal');
 let currentNumber = '';
 
 function updateDisplay(digit) {
