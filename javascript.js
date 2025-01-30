@@ -68,7 +68,8 @@ operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if (firstOperand === "") {
             firstOperand = currentNumber;
-        } else {
+        } else if (handleDivisionByZero()) return;
+        else {
             firstOperand = parseFloat(
                 operate(
                     operation,
@@ -90,10 +91,7 @@ const resultButton = document.querySelector(".equals");
 resultButton.addEventListener("click", () => {
     if (firstOperand === "") {
         return;
-    } else if (operation = "/" && currentNumber === "0") {
-        display.textContent = "Nah mate";
-        return
-    }
+    } else if (handleDivisionByZero()) return;
     secondOperand = currentNumber;
     currentNumber = "";
     display.textContent = parseFloat(
@@ -103,6 +101,7 @@ resultButton.addEventListener("click", () => {
             parseFloat(secondOperand)
         ).toPrecision(14)
     );
+    shouldResetDisplay = true;
 });
 
 //clear the display and reset the variables
@@ -115,3 +114,12 @@ clearButton.addEventListener("click", () => {
     operation = "";
     display.textContent = "";
 });
+
+//add division by zero case
+function handleDivisionByZero() {
+    if (operation === "/" && currentNumber === "0") {
+        display.textContent = "Nah mate";
+        return true;
+    }
+    return false;
+}
