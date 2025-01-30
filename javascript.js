@@ -51,6 +51,9 @@ function updateDisplay(digit) {
         display.textContent = '';
         shouldResetDisplay = false;
     }
+    if (currentNumber.length >= 14) {
+        return;
+    }
     currentNumber += digit;
     display.textContent += digit;
 }
@@ -69,7 +72,7 @@ operatorButtons.forEach(button => {
         if (firstOperand === '') {
             firstOperand = currentNumber;
         } else {
-            firstOperand = operate(operation, parseFloat(firstOperand), parseFloat(currentNumber));
+            firstOperand = parseFloat(operate(operation, parseFloat(firstOperand), parseFloat(secondOperand)).toPrecision(14));
             display.textContent = firstOperand;
         }
         currentNumber = '';
@@ -84,6 +87,6 @@ const resultButton = document.querySelector('.equals');
 resultButton.addEventListener('click', () => {
     secondOperand = currentNumber;
     currentNumber = '';
-    display.textContent = operate(operation, parseFloat(firstOperand), parseFloat(secondOperand));
+    display.textContent = parseFloat(operate(operation, parseFloat(firstOperand), parseFloat(secondOperand)).toPrecision(14));
 })
 
