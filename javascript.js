@@ -44,8 +44,13 @@ function operate (operator, a, b) {
 const display = document.querySelector('.display');
 const digitButtons = document.querySelectorAll('.operand, .decimal');
 let currentNumber = '';
+let shouldResetDisplay = false;
 
 function updateDisplay(digit) {
+    if (shouldResetDisplay) {
+        display.textContent = '';
+        shouldResetDisplay = false;
+    }
     currentNumber += digit;
     display.textContent += digit;
 }
@@ -61,10 +66,15 @@ const operatorButtons = document.querySelectorAll('.operator');
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-        firstOperand = currentNumber;
+        if (firstOperand === '') {
+            firstOperand = currentNumber;
+        } else {
+            firstOperand = operate(operation, parseFloat(firstOperand), parseFloat(currentNumber));
+            display.textContent = firstOperand;
+        }
         currentNumber = '';
         operation = button.textContent;
-        display.textContent = '';
+        shouldResetDisplay = true;
     })
 })
 
