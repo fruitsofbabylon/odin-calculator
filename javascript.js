@@ -1,7 +1,8 @@
-// add 2 numbers and an operand variables
-let firstOperand = "";
-let secondOperand = "";
-let operation = "";
+const display = document.querySelector(".display");
+const digitButtons = document.querySelectorAll(".operand, .decimal");
+const operatorButtons = document.querySelectorAll(".operator");
+const resultButton = document.querySelector(".equals");
+const clearButton = document.querySelector(".clear");
 
 //basic math operators
 function add(a, b) {
@@ -38,8 +39,6 @@ function operate(operator, a, b) {
 }
 
 //display the content of digit buttons clicked and store their values
-const display = document.querySelector(".display");
-const digitButtons = document.querySelectorAll(".operand, .decimal");
 let currentNumber = "";
 let shouldResetDisplay = false;
 let lastBtnClickedOperator = false;
@@ -70,8 +69,8 @@ digitButtons.forEach((button) => {
 });
 
 //store the first operand and operator clicked
-const operatorButtons = document.querySelectorAll(".operator");
-
+let firstOperand = "";
+let operation = "";
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if (firstOperand === "") {
@@ -99,8 +98,7 @@ operatorButtons.forEach((button) => {
 });
 
 //store the second operand and execute the calculation
-const resultButton = document.querySelector(".equals");
-
+let secondOperand = "";
 resultButton.addEventListener("click", () => {
     if (firstOperand === "") {
         return;
@@ -120,8 +118,6 @@ resultButton.addEventListener("click", () => {
 });
 
 //clear the display and reset the variables
-const clearButton = document.querySelector(".clear");
-
 clearButton.addEventListener("click", () => {
     currentNumber = "";
     firstOperand = "";
