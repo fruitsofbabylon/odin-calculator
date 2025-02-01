@@ -35,18 +35,23 @@ body {
 }
 
 .display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     flex-basis: 100%;
     border: none;
-    height: 60px;
+    height: 70px;
     margin: 15px 5%;
-    vertical-align: middle;
-
     font-family: 'Digital-7';
     font-weight: normal;
     font-style: normal;
     color: #F6D9E2;
     font-size: 60px;
-    text-align-last: right;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 
 .operator,
