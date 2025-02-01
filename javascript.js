@@ -42,6 +42,7 @@ const display = document.querySelector(".display");
 const digitButtons = document.querySelectorAll(".operand, .decimal");
 let currentNumber = "";
 let shouldResetDisplay = false;
+let lastBtnClickedOperator = false;
 
 function updateDisplay(digit) {
     if (shouldResetDisplay) {
@@ -58,6 +59,7 @@ function updateDisplay(digit) {
 digitButtons.forEach((button) => {
     button.addEventListener("click", () => {
         updateDisplay(button.textContent);
+        lastBtnClickedOperator = false;
     });
 });
 
@@ -68,6 +70,9 @@ operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         if (firstOperand === "") {
             firstOperand = currentNumber;
+        } else if (lastBtnClickedOperator === true) {
+            operation = button.textContent;
+            return;
         } else if (handleDivisionByZero()) return;
         else {
             firstOperand = parseFloat(
@@ -82,6 +87,7 @@ operatorButtons.forEach((button) => {
         currentNumber = "";
         operation = button.textContent;
         shouldResetDisplay = true;
+        lastBtnClickedOperator = true;
     });
 });
 
@@ -102,6 +108,7 @@ resultButton.addEventListener("click", () => {
         ).toPrecision(14)
     );
     shouldResetDisplay = true;
+    lastBtnClickedOperator = false;
 });
 
 //clear the display and reset the variables
@@ -113,6 +120,8 @@ clearButton.addEventListener("click", () => {
     secondOperand = "";
     operation = "";
     display.textContent = "";
+    shouldResetDisplay = false;
+    lastBtnClickedOperator = false;
 });
 
 //add division by zero case
