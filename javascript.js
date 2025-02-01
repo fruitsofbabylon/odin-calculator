@@ -43,6 +43,7 @@ const digitButtons = document.querySelectorAll(".operand, .decimal");
 let currentNumber = "";
 let shouldResetDisplay = false;
 let lastBtnClickedOperator = false;
+let decimalUsed = false;
 
 function updateDisplay(digit) {
     if (shouldResetDisplay) {
@@ -58,6 +59,11 @@ function updateDisplay(digit) {
 
 digitButtons.forEach((button) => {
     button.addEventListener("click", () => {
+        if (button.textContent === "." && decimalUsed) {
+            return;
+        } else if (button.textContent === ".") {
+            decimalUsed = true;
+        }
         updateDisplay(button.textContent);
         lastBtnClickedOperator = false;
     });
@@ -88,6 +94,7 @@ operatorButtons.forEach((button) => {
         operation = button.textContent;
         shouldResetDisplay = true;
         lastBtnClickedOperator = true;
+        decimalUsed = false;
     });
 });
 
@@ -109,6 +116,7 @@ resultButton.addEventListener("click", () => {
     );
     shouldResetDisplay = true;
     lastBtnClickedOperator = false;
+    decimalUsed = false;
 });
 
 //clear the display and reset the variables
@@ -122,6 +130,7 @@ clearButton.addEventListener("click", () => {
     display.textContent = "";
     shouldResetDisplay = false;
     lastBtnClickedOperator = false;
+    decimalUsed = false;
 });
 
 //add division by zero case
