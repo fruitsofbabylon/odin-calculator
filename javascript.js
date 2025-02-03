@@ -4,6 +4,7 @@ const operatorButtons = document.querySelectorAll(".operator");
 const resultButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 const percentageButton = document.querySelector(".percent");
+const backspaceButton = document.querySelector(".backspace");
 
 //basic math operators
 function add(a, b) {
@@ -51,6 +52,7 @@ function updateDisplay(digit) {
         shouldResetDisplay = false;
     } if (display.textContent === "0" && digit !== ".") {
         display.textContent = "";
+        currentNumber = "";
     } 
     if (currentNumber.length >= 14) {
         return;
@@ -149,4 +151,13 @@ percentageButton.addEventListener("click", () => {
         currentNumber = parseFloat(currentNumber) / 100;
         display.textContent = currentNumber;
     }
+});
+
+//backspace btn
+backspaceButton.addEventListener("click", () => {
+    if (currentNumber === 0 || currentNumber === "") {
+        return;
+    }
+    currentNumber = currentNumber.slice(0, -1);
+    display.textContent = currentNumber;
 });
