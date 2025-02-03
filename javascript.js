@@ -39,7 +39,7 @@ function operate(operator, a, b) {
 }
 
 //display the content of digit buttons clicked and store their values
-let currentNumber = "";
+let currentNumber = 0;
 let shouldResetDisplay = false;
 let lastBtnClickedOperator = false;
 let decimalUsed = false;
@@ -48,7 +48,9 @@ function updateDisplay(digit) {
     if (shouldResetDisplay) {
         display.textContent = "";
         shouldResetDisplay = false;
-    }
+    } if (display.textContent === "0" && digit !== ".") {
+        display.textContent = "";
+    } 
     if (currentNumber.length >= 14) {
         return;
     }
@@ -119,11 +121,11 @@ resultButton.addEventListener("click", () => {
 
 //clear the display and reset the variables
 clearButton.addEventListener("click", () => {
-    currentNumber = "";
+    currentNumber = 0;
     firstOperand = "";
     secondOperand = "";
     operation = "";
-    display.textContent = "";
+    display.textContent = 0;
     shouldResetDisplay = false;
     lastBtnClickedOperator = false;
     decimalUsed = false;
