@@ -3,6 +3,7 @@ const digitButtons = document.querySelectorAll(".operand, .decimal");
 const operatorButtons = document.querySelectorAll(".operator");
 const resultButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
+const percentageButton = document.querySelector(".percent");
 
 //basic math operators
 function add(a, b) {
@@ -139,3 +140,13 @@ function handleDivisionByZero() {
     }
     return false;
 }
+
+//convert number into percentage btn
+percentageButton.addEventListener("click", () => {
+    if (currentNumber === 0) {
+        return;
+    } else {
+        currentNumber = parseFloat(currentNumber) / 100;
+        display.textContent = currentNumber;
+    }
+});
