@@ -50,10 +50,11 @@ function updateDisplay(digit) {
     if (shouldResetDisplay) {
         display.textContent = "";
         shouldResetDisplay = false;
-    } if (display.textContent === "0" && digit !== ".") {
+    }
+    if (display.textContent === "0" && digit !== ".") {
         display.textContent = "";
         currentNumber = "";
-    } 
+    }
     if (currentNumber.length >= 14) {
         return;
     }
@@ -83,6 +84,9 @@ operatorButtons.forEach((button) => {
         } else if (lastBtnClickedOperator === true) {
             operation = button.textContent;
             return;
+        } else if (currentNumber === "") {
+            firstOperand = display.textContent;
+            secondOperand = "";
         } else if (handleDivisionByZero()) return;
         else {
             firstOperand = parseFloat(
@@ -160,4 +164,67 @@ backspaceButton.addEventListener("click", () => {
     }
     currentNumber = currentNumber.slice(0, -1);
     display.textContent = currentNumber;
+});
+
+//keyboard support
+document.addEventListener("keydown", (e) => {
+    let key = e.key;
+    const allowedKeys = [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "+",
+        "-",
+        "*",
+        "/",
+        ".",
+        "=",
+        "%",
+        "Enter",
+        "Backspace",
+        "Escape",
+    ];
+
+    if (allowedKeys.includes(key)) {
+        switch (key) {
+            case "Enter":
+            case "=":
+                resultButton.click();
+                break;
+            case "Escape":
+                clearButton.click();
+                break;
+            case "Backspace":
+                e.preventDefault();
+                backspaceButton.click();
+                break;
+            case "%":
+                percentageButton.click();
+                break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                operatorButtons.forEach((button) => {
+                    if (button.textContent === key) {
+                        button.click();
+                    }
+                });
+                break;
+            default:
+                digitButtons.forEach((button) => {
+                    if (button.textContent === key) {
+                        button.click();
+                    }
+                });
+                break;
+        }
+    }
 });
