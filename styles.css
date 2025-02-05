@@ -59,6 +59,10 @@ body {
     background-color: #C247ED;
     color: #F6D9E2;
 }
+.operator:hover,
+.equals:hover {
+    background-color: #cb63f0;
+}
 
 .operand,
 .decimal {
@@ -66,11 +70,22 @@ body {
     color: #F6D9E2;
 }
 
+.operand:hover,
+.decimal:hover {
+    background-color: #4745ca;
+}
+
 .percent,
 .clear,
 .backspace {
     background-color: #F199E3;
     color: #1D084B;
+}
+
+.percent:hover,
+.clear:hover,
+.backspace:hover {
+    background-color: #f3a8e7;
 }
 
 #zero-btn {
