@@ -5,6 +5,7 @@ const resultButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 const percentageButton = document.querySelector(".percent");
 const backspaceButton = document.querySelector(".backspace");
+const allButtons = document.querySelectorAll("button");
 
 //basic math operators
 function add(a, b) {
@@ -54,6 +55,10 @@ function updateDisplay(digit) {
     if (display.textContent === "0" && digit !== ".") {
         display.textContent = "";
         currentNumber = "";
+    } 
+    if (currentNumber === "" && digit === ".") {
+      currentNumber = "0"; 
+      display.textContent = "0";
     }
     if (currentNumber.length >= 14) {
         return;
@@ -83,6 +88,7 @@ operatorButtons.forEach((button) => {
             firstOperand = currentNumber;
         } else if (lastBtnClickedOperator === true) {
             operation = button.textContent;
+            changeButtonColor(button); 
             return;
         } else if (currentNumber === "") {
             firstOperand = display.textContent;
@@ -100,6 +106,7 @@ operatorButtons.forEach((button) => {
         }
         currentNumber = "";
         operation = button.textContent;
+        changeButtonColor(button);
         shouldResetDisplay = true;
         lastBtnClickedOperator = true;
         decimalUsed = false;
@@ -108,8 +115,9 @@ operatorButtons.forEach((button) => {
 
 //store the second operand and execute the calculation
 let secondOperand = "";
+
 resultButton.addEventListener("click", () => {
-    if (firstOperand === "") {
+    if (firstOperand === "" || currentNumber === "") {
         return;
     } else if (handleDivisionByZero()) return;
     secondOperand = currentNumber;
@@ -124,6 +132,7 @@ resultButton.addEventListener("click", () => {
     shouldResetDisplay = true;
     lastBtnClickedOperator = false;
     decimalUsed = false;
+    changeButtonColor(resultButton); 
 });
 
 //clear the display and reset the variables
@@ -136,6 +145,10 @@ clearButton.addEventListener("click", () => {
     shouldResetDisplay = false;
     lastBtnClickedOperator = false;
     decimalUsed = false;
+    lastClickedButton = null;
+    allButtons.forEach(button => {
+      button.style.backgroundColor = "";
+    });
 });
 
 //add division by zero case
@@ -228,3 +241,14 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
+
+//change the color of the buttons when clicked 
+let lastClickedButton = null;
+
+function changeButtonColor(button) {
+    if (lastClickedButton) {
+        lastClickedButton.style.backgroundColor = "";
+    }
+    button.style.backgroundColor = "#d47ef2";
+    lastClickedButton = button;
+}
